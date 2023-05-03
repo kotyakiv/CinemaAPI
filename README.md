@@ -64,6 +64,7 @@ Error: response status is 404
 ```
 
 ## GET /cinemas/{id}/showtimes
+get times when shows start  
 API respones
 ```
 [
@@ -76,4 +77,63 @@ API respones
     55
   ],
 ]
+```
+
+## POST /cinemas
+creates a new cinema  
+if value is not specifed, it will be automatically initialized with 0 or NULL
+Request body
+```
+{
+    "name:"string",
+    "openingHour":0,
+    "closingHour":0,
+    "showDuration":0
+}
+```
+API respones
+```
+    "id:1,
+    "name:"string",
+    "openingHour":0,
+    "closingHour":0,
+    "showDuration":0
+```
+
+## PUT /cinemas/{id}
+updates a specific cinema by ID
+API request
+```
+    "name:"string",
+    "openingHour":0,
+    "closingHour":0,
+    "showDuration":0
+
+```
+in the request body is possible to ommite some values, they will not be changed
+```
+    "openingHour":0,
+    "closingHour":0,
+```
+API response
+```
+    "id:1,
+    "name:"string",
+    "openingHour":0,
+    "closingHour":0,
+    "showDuration":0
+
+```
+
+## DELETE /cinemas/{id}
+delete a specific cinema by ID  
+API response if id exists
+```
+{
+  "success": true
+}
+```
+if id doesn't exists
+```
+Error: response status is 404
 ```

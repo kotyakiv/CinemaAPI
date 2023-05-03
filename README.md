@@ -13,14 +13,14 @@ is to implement API that should allow users to create, read, update, and delete 
 #### The API isn't pubished or hosted. Use Swagger to test and run the project
 
 ## Endpoints
--	[GET /cinemas](#GET/cinemas) - to retrieve a list of all cinemas
+-	[GET /cinemas](#get/cinemas) - to retrieve a list of all cinemas
 -	[GET /cinemas/{id}](##GET/cinemas/{id}) - to retrieve a specific resource by ID
 -	GET /cinemas/{id}/showtimes – to get times when shows start
 -	POST /cinemas - to create a new cinema
 -	PUT /cinemas/{id} - to update a specific cinema by ID
 -	DELETE /cinemas/{id} - to delete a specific cinema by ID
 
-## GET /cinemas
+## GET/cinemas
 retrieve a list of all cinemas  
 
 API response:  
@@ -119,7 +119,7 @@ if openingHour,closingHour more than 24 or with showDuration are negative, respo
 ```
 Error: response status is 400
 ```
-in the request body is possible to ommite some values, they will not be changed
+in the request body is possible to omit some values, they will not be changed
 ```
     "openingHour":0,
     "closingHour":0,

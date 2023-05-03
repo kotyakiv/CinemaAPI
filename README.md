@@ -3,7 +3,7 @@ Assignment project for Fatman Oy
 
 The project is done with <b>ASP.NET Core Web API</b>
 
-#### <b>!!! Before running this API, create a test project for Unit test, copy the content and delete the folder UnitTests </b>
+#### <b>!!! Before running this API, create a test project for Unit test, copy the content and delete the folder UnitTests !!!</b>
 
 #### Goal:
 to implement API that should allow users to create, read, update, and delete records in a database using HTTP verbs (POST, GET, PUT, DELETE)
@@ -154,6 +154,6 @@ Error: response status is 404
 There are unit tests for the ShowTimeTable function  
 
 Add a New project to the solution  
-select MSTest Unit Test Project
+select <b>MSTest Unit Test Project</b>
 in Dependencies add Project refernce to CinemaAPI  
 test > Run all tests

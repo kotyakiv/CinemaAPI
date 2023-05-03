@@ -2,39 +2,42 @@
 {
     public class ShowTime
     {
-        public static bool IsTimeOutOfRange(int open, int close, int length)
+        /* 
+         * Time cannot be negative; 
+         * there is not more than 24 hours; 
+         * Opening and closing hours aren't equal, otherwise it's open around the clock;
+         */
+        public static bool IsTimeInvalid(int open, int close, int length)
         {
-            return (open < 0 || open > 24 || close < 0 || close > 24 || length < 0);
+            if (open == 24) open = 0;
+            if (close == 24) close = 0;
+
+            return (open < 0 || open > 24 || close < 0 || close > 24 || length < 0 || open == close);
         }
 
         public static List<int[]> ShowTimeTable(int open, int close, int length)
         {
             const int SESSION_GAP = 15;
             List<int[]> showTimeTable = new List<int[]>();
-            int duration;
+            int durationHours;
             int sessionNum;
             int hours;
             int minutes;
             
 
-            if (IsTimeOutOfRange(open, close, length))
+            if (IsTimeInvalid(open, close, length))
                 return showTimeTable;
 
-            if (open == 24) open = 0;
-            if (close == 24) close = 0;
-
             if (open < close)
-                duration = close - open;
+                durationHours = close - open;
             else if (open > close)
-                duration = 24 - open + close;
+                durationHours = 24 - open + close;
             else
-                duration = 0;
+                durationHours = 0;
 
             length += SESSION_GAP;
-            // There is no break between sessions, when the last movie ends
-            sessionNum = (duration * 60 /*+ SESSION_GAP*/) / length;
-
-
+            // There is no break between sessions, when the last movie ends, so added SESSION_GAP
+            sessionNum = (durationHours * 60 + SESSION_GAP) / length;
 
             hours = open;
             minutes = 0;
@@ -43,6 +46,8 @@
                 int[] showStartTime = new int[2];
                 showStartTime[0] = hours;
                 showStartTime[1] = minutes;
+
+                showTimeTable.Add(showStartTime);
 
                 hours += length / 60;
                 minutes += length % 60;
@@ -53,8 +58,6 @@
                 }
                 if (hours >= 24)
                     hours -= 24;
-
-                showTimeTable.Add(showStartTime);
             }
 
             return showTimeTable;

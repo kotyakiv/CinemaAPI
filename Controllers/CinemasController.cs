@@ -69,7 +69,7 @@ namespace CinemaAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCinemas(long id, CinemasItem cinemas)
         {
-            if (ShowTime.IsTimeOutOfRange(cinemas.OpeningHour, cinemas.ClosingHour, cinemas.ShowDuration))
+            if (ShowTime.IsTimeInvalid(cinemas.OpeningHour, cinemas.ClosingHour, cinemas.ShowDuration))
                 return BadRequest();
 
             cinemas.Id = id;
@@ -103,7 +103,7 @@ namespace CinemaAPI.Controllers
                 return Problem("Entity set 'CinemasContext.Cinemas'  is null.");
             }
 
-            if (ShowTime.IsTimeOutOfRange(cinemas.OpeningHour, cinemas.ClosingHour, cinemas.ShowDuration))
+            if (ShowTime.IsTimeInvalid(cinemas.OpeningHour, cinemas.ClosingHour, cinemas.ShowDuration))
                 return BadRequest();
 
             // id from the request body will be ignored and automatically added next id

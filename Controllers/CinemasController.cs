@@ -74,11 +74,7 @@ namespace CinemaAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCinemas(long id, CinemasItem cinemas)
         {
-            if (id != cinemas.Id)
-            {
-                return BadRequest();
-            }
-
+            cinemas.Id = id;
             _context.Entry(cinemas).State = EntityState.Modified;
 
             try
@@ -97,27 +93,26 @@ namespace CinemaAPI.Controllers
                 }
             }
 
-            return NoContent();
+            return CreatedAtAction(nameof(PutCinemas), cinemas);
         }
 
-        // POST: api/Cinemas/{id}
+        // POST: api/Cinemas/
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost("{id}")]
-        public async Task<ActionResult<CinemasItem>> PostCinemas(long id, CinemasItem cinemas)
+        [HttpPost]
+        public async Task<ActionResult<CinemasItem>> PostCinemas(CinemasItem cinemas)
         {
             if (_context.CinemasItems == null)
             {
                 return Problem("Entity set 'CinemasContext.Cinemas'  is null.");
             }
-
-            cinemas.Id = id;
+            cinemas.Id = 0;
             _context.CinemasItems.Add(cinemas);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCinemas", new { id = cinemas.Id }, cinemas);
+            return CreatedAtAction(nameof(PostCinemas), cinemas);
         }
 
-        // DELETE: api/Cinemas/{id}
+        // DELETE: api/Cinemas/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCinemas(long id)
         {

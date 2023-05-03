@@ -81,7 +81,7 @@ API respones
 
 ## POST /cinemas
 creates a new cinema  
-All values are required  
+all values are required  
 Request body
 ```
 {
@@ -107,7 +107,7 @@ Error: response status is 400
 
 ## PUT /cinemas/{id}
 updates a specific cinema by ID  
-All values are required  
+all values are required  
 API request
 ```
     "name:"string",

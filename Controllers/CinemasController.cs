@@ -9,7 +9,7 @@ using CinemaAPI.Models;
 
 namespace CinemaAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Cinemas")]
     [ApiController]
     public class CinemasController : ControllerBase
     {
@@ -69,7 +69,7 @@ namespace CinemaAPI.Controllers
             return CreatedAtAction(nameof(GetCinemasTime), responseBody);
         }
 
-        // PUT: api/Cinemas/5
+        // PUT: api/Cinemas/{id}
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCinemas(long id, CinemasItem cinemas)
@@ -100,22 +100,24 @@ namespace CinemaAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Cinemas
+        // POST: api/Cinemas/{id}
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<CinemasItem>> PostCinemas(CinemasItem cinemas)
+        [HttpPost("{id}")]
+        public async Task<ActionResult<CinemasItem>> PostCinemas(long id, CinemasItem cinemas)
         {
-          if (_context.CinemasItems == null)
-          {
-              return Problem("Entity set 'CinemasContext.Cinemas'  is null.");
-          }
+            if (_context.CinemasItems == null)
+            {
+                return Problem("Entity set 'CinemasContext.Cinemas'  is null.");
+            }
+
+            cinemas.Id = id;
             _context.CinemasItems.Add(cinemas);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetCinemas", new { id = cinemas.Id }, cinemas);
         }
 
-        // DELETE: api/Cinemas/5
+        // DELETE: api/Cinemas/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCinemas(long id)
         {

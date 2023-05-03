@@ -81,7 +81,7 @@ API respones
 
 ## POST /cinemas
 creates a new cinema  
-if value is not specifed, it will be automatically initialized with 0 or NULL  
+All values are required  
 Request body
 ```
 {
@@ -107,6 +107,7 @@ Error: response status is 400
 
 ## PUT /cinemas/{id}
 updates a specific cinema by ID  
+All values are required  
 API request
 ```
     "name:"string",
@@ -118,11 +119,6 @@ API request
 if openingHour,closingHour,showDuration are negative or hours bigger than 24 , response is
 ```
 Error: response status is 400
-```
-in the request body is possible to omit some values, they will not be changed
-```
-    "openingHour":0,
-    "closingHour":0,
 ```
 API response
 ```

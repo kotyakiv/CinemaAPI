@@ -138,13 +138,13 @@ API response
 
 ## DELETE /cinemas/{id}
 delete a specific cinema by ID  
-API response if id exists
+API response if id existed
 ```
 {
   "success": true
 }
 ```
-if id doesn't exists
+if id doesn't exist
 ```
 Error: response status is 404
 ```

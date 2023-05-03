@@ -102,7 +102,6 @@ API respones
 API response if:  
 - openingHour,closingHour,showDuration are negative  
 - hours bigger than 24  
-- openingHour and closingHour are equal  
 ```
 Error: response status is 400
 ```
@@ -122,7 +121,6 @@ API request
 API response if:  
 - openingHour,closingHour,showDuration are negative  
 - hours bigger than 24  
-- openingHour and closingHour are equal  
 ```
 Error: response status is 400
 ```

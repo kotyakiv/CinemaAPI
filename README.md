@@ -1,9 +1,9 @@
 # CinemaAPI
 Assignment project for Fatman Oy 
 
-#### The project is done with web API with ASP.NET Core
+The project is done with <b>ASP.NET Core Web API</b>
 
-#### Before running this API create a test project for Unit test, copy the content and delete the folder UnitTests 
+#### <b>!!! Before running this API, create a test project for Unit test, copy the content and delete the folder UnitTests </b>
 
 #### Goal:
 to implement API that should allow users to create, read, update, and delete records in a database using HTTP verbs (POST, GET, PUT, DELETE)

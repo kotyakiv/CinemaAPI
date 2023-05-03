@@ -48,7 +48,7 @@ if list is empty, response is
 ```
 
 ## GET /cinemas/{id}
-retrieve a specific resource by ID
+retrieve a specific resource by ID  
 API response if id exists:
 ```
    "id":0,

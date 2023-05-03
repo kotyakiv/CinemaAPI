@@ -146,3 +146,11 @@ if id doesn't exist
 ```
 Error: response status is 404
 ```
+## Unit tests
+
+There are unit tests for the ShowTimeTable function  
+
+Add a New project to the solution  
+select MSTest Unit Test Project
+in Dependencies add Project refernce to CinemaAPI  
+test > Run all tests

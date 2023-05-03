@@ -63,7 +63,7 @@ if there is no id
 Error: response status is 404
 ```
 
-## GET /cinemas/{id}/showtimes
+## GET /cinemas/{id}/showtimes  
 get times when shows start  
 API respones
 ```
@@ -81,7 +81,7 @@ API respones
 
 ## POST /cinemas
 creates a new cinema  
-if value is not specifed, it will be automatically initialized with 0 or NULL
+if value is not specifed, it will be automatically initialized with 0 or NULL  
 Request body
 ```
 {
@@ -99,9 +99,14 @@ API respones
     "closingHour":0,
     "showDuration":0
 ```
+if openingHour,closingHour more than 24 or with showDuration are negative, response is
+```
+Error: response status is 400
+```
+
 
 ## PUT /cinemas/{id}
-updates a specific cinema by ID
+updates a specific cinema by ID  
 API request
 ```
     "name:"string",
@@ -109,6 +114,10 @@ API request
     "closingHour":0,
     "showDuration":0
 
+```
+if openingHour,closingHour more than 24 or with showDuration are negative, response is
+```
+Error: response status is 400
 ```
 in the request body is possible to ommite some values, they will not be changed
 ```

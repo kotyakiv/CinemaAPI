@@ -3,16 +3,13 @@
     public class ShowTime
     {
         /* 
-         * Time cannot be negative; 
-         * there is not more than 24 hours; 
-         * Opening and closing hours aren't equal, otherwise it's open around the clock;
+         * Time cannot be negative
+         * there is no more than 24 hours
          */
-        public static bool IsTimeInvalid(int open, int close, int length)
+        public static bool IsTimeOutOfRange(int open, int close, int length)
         {
-            if (open == 24) open = 0;
-            if (close == 24) close = 0;
 
-            return (open < 0 || open > 24 || close < 0 || close > 24 || length < 0 || open == close);
+            return (open < 0 || open > 24 || close < 0 || close > 24 || length < 0);
         }
 
         public static List<int[]> ShowTimeTable(int open, int close, int length)
@@ -23,9 +20,11 @@
             int sessionNum;
             int hours;
             int minutes;
-            
 
-            if (IsTimeInvalid(open, close, length))
+            if (open == 24) open = 0;
+            if (close == 24) close = 0;
+            // Opening and closing hours aren't equal, otherwise it's open around the clock
+            if (IsTimeOutOfRange(open, close, length) || open == close)
                 return showTimeTable;
 
             if (open < close)

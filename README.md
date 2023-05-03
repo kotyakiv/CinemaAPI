@@ -4,7 +4,7 @@ Assignment project for Fatman Oy
 #### The project is done with web API with ASP.NET Core
 
 #### Goal:
-is to implement API that should allow users to create, read, update, and delete records in a database using HTTP verbs (POST, GET, PUT, DELETE)
+to implement API that should allow users to create, read, update, and delete records in a database using HTTP verbs (POST, GET, PUT, DELETE)
 
 #### Required packages for the project:
 1. Microsoft.EntityFrameworkCore.InMemory

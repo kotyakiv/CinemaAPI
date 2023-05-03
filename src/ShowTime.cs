@@ -15,7 +15,7 @@
             int sessionNum;
             int hours;
             int minutes;
-
+            
 
             if (IsTimeOutOfRange(open, close, length))
                 return showTimeTable;
@@ -31,7 +31,10 @@
                 duration = 0;
 
             length += SESSION_GAP;
-            sessionNum = duration * 60 / length;
+            // There is no break between sessions, when the last movie ends
+            sessionNum = (duration * 60 /*+ SESSION_GAP*/) / length;
+
+
 
             hours = open;
             minutes = 0;

@@ -72,9 +72,6 @@ namespace CinemaAPI.Controllers
             if (ShowTime.IsTimeOutOfRange(cinemas.OpeningHour, cinemas.ClosingHour, cinemas.ShowDuration))
                 return BadRequest();
 
-            System.Console.WriteLine(cinemas.Id);
-            System.Console.WriteLine(cinemas.ShowDuration);
-            System.Console.WriteLine(cinemas.OpeningHour);
             cinemas.Id = id;
             _context.Entry(cinemas).State = EntityState.Modified;
 

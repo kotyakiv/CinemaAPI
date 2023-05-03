@@ -13,14 +13,14 @@ is to implement API that should allow users to create, read, update, and delete 
 #### The API isn't pubished or hosted. Use Swagger to test and run the project
 
 ## Endpoints
--	[GET /cinemas](#get/cinemas) - to retrieve a list of all cinemas
+-	[GET /cinemas](#cinemas) - to retrieve a list of all cinemas
 -	[GET /cinemas/{id}](##GET/cinemas/{id}) - to retrieve a specific resource by ID
 -	GET /cinemas/{id}/showtimes – to get times when shows start
 -	POST /cinemas - to create a new cinema
 -	PUT /cinemas/{id} - to update a specific cinema by ID
 -	DELETE /cinemas/{id} - to delete a specific cinema by ID
 
-## GET/cinemas
+## cinemas
 retrieve a list of all cinemas  
 
 API response:  

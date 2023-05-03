@@ -153,7 +153,7 @@ Error: response status is 404
 
 There are unit tests for the ShowTimeTable function  
 
-Add a New project to the solution  
-select <b>MSTest Unit Test Project</b>
-in Dependencies add Project refernce to CinemaAPI  
-test > Run all tests
+Add a <b>New project</b> to the solution  
+select <b>MSTest Unit Test Project</b>  
+in <b>Dependencies</b> add Project reference to CinemaAPI  
+Test > Run all tests

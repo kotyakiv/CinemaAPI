@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CinemaAPI.Models;
+using CinemaAPI.src;
 
 namespace CinemaAPI.Controllers
 {
-    [Route("api/Cinemas")]
+    [Route("api/cinemas")]
     [ApiController]
     public class CinemasController : ControllerBase
     {
@@ -20,7 +16,7 @@ namespace CinemaAPI.Controllers
             _context = context;
         }
 
-        // GET: api/Cinemas
+        // GET: api/cinemas
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CinemasItem>>> GetCinemas()
         {
@@ -31,7 +27,7 @@ namespace CinemaAPI.Controllers
             return await _context.CinemasItems.ToListAsync();
         }
 
-        // GET: api/Cinemas/{id}
+        // GET: api/cinemas/{id}
         [HttpGet("{id}")]
         public async Task<ActionResult<CinemasItem>> GetCinemas(long id)
         {
@@ -49,7 +45,7 @@ namespace CinemaAPI.Controllers
             return cinemas;
         }
 
-        // GET: api/Cinemas/{id}/showtime
+        // GET: api/cinemas/{id}/showtime
         [HttpGet("{id}/showtime")]
         public async Task<ActionResult<CinemasItem>> GetCinemasTime(long id)
         {
@@ -64,16 +60,18 @@ namespace CinemaAPI.Controllers
                 return NotFound();
             }
 
-            var responseBody = CinemasItem.showTimeTable(cinemaItem.OpeningHour, cinemaItem.ClosingHour, cinemaItem.ShowDuration);
+            var responseBody = ShowTime.ShowTimeTable(cinemaItem.OpeningHour, cinemaItem.ClosingHour, cinemaItem.ShowDuration);
 
             return CreatedAtAction(nameof(GetCinemasTime), responseBody);
         }
 
-        // PUT: api/Cinemas/{id}
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // PUT: api/cinemas/{id}
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCinemas(long id, CinemasItem cinemas)
         {
+            if (ShowTime.IsTimeOutOfRange(cinemas.OpeningHour, cinemas.ClosingHour, cinemas.ShowDuration))
+                return BadRequest();
+
             cinemas.Id = id;
             _context.Entry(cinemas).State = EntityState.Modified;
 
@@ -92,12 +90,10 @@ namespace CinemaAPI.Controllers
                     throw;
                 }
             }
-
             return CreatedAtAction(nameof(PutCinemas), cinemas);
         }
 
-        // POST: api/Cinemas/
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // POST: api/cinemas/
         [HttpPost]
         public async Task<ActionResult<CinemasItem>> PostCinemas(CinemasItem cinemas)
         {
@@ -105,14 +101,20 @@ namespace CinemaAPI.Controllers
             {
                 return Problem("Entity set 'CinemasContext.Cinemas'  is null.");
             }
+
+            if (ShowTime.IsTimeOutOfRange(cinemas.OpeningHour, cinemas.ClosingHour, cinemas.ShowDuration))
+                return BadRequest();
+
+            // id from the request body will be ignored and automatically added next id
             cinemas.Id = 0;
+
             _context.CinemasItems.Add(cinemas);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(PostCinemas), cinemas);
         }
 
-        // DELETE: api/Cinemas/5
+        // DELETE: api/cinemas/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCinemas(long id)
         {

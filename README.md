@@ -6,6 +6,8 @@ Assignment project for Fatman Oy
 #### Goal:
 to implement API that should allow users to create, read, update, and delete records in a database using HTTP verbs (POST, GET, PUT, DELETE)
 
+###Before running this API a test project for Unit test and delete the folder UnitTests 
+
 #### Required packages for the project:
 1. Microsoft.EntityFrameworkCore.InMemory
 2. (Optional) NuGet\Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design -Version 6.0.11 

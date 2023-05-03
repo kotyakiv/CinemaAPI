@@ -97,6 +97,7 @@ namespace CinemaAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<CinemasItem>> PostCinemas(CinemasItem cinemas)
         {
+
             if (_context.CinemasItems == null)
             {
                 return Problem("Entity set 'CinemasContext.Cinemas'  is null.");
